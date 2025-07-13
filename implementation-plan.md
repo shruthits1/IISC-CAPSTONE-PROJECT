@@ -57,5 +57,3 @@
 | 💬 Feedback Integration | Real-time telemetry for user confusion points or dissatisfaction signals |
 
 ---
-
-I can help you turn this into a **project charter**, **micro-course**, or even a mock pitch deck for stakeholders. Want to start with a canvas that outlines your goals, target users, and MVP scope?
