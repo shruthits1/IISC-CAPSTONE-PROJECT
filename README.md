@@ -41,14 +41,8 @@ A comprehensive AI-powered financial advisory application that democratizes acce
 
 ## 🚀 Quick Start
 
-### Option 1: Replit (Recommended)
-1. **Fork this project** on Replit
-2. **Add API keys** in the Secrets tab:
-   - `OPENAI_API_KEY`: Your OpenAI API key
-3. **Run the project** - dependencies install automatically
-4. **Access your app** via the provided URL
 
-### Option 2: Local Development
+### Option 1: Local Development
 ```bash
 # Clone the repository
 git clone <repository-url>
@@ -74,15 +68,6 @@ streamlit run app.py --server.port 5000
 - **OpenAI API Key** (Required): Get from [OpenAI Platform](https://platform.openai.com/api-keys)
 - **Anthropic API Key** (Optional): Get from [Anthropic Console](https://console.anthropic.com/)
 
-## 🏗️ Architecture
-
-### System Overview
-```
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Streamlit UI  │◄──►│  Business Logic │◄──►│  External APIs  │
-│   (Frontend)    │    │     (Utils)     │    │ (OpenAI, Yahoo) │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-```
 
 ### Core Components
 - **Financial Advisor**: AI-powered advice generation
@@ -172,7 +157,6 @@ ai-financial-advisory/
 │   ├── SETUP.md                 # Setup guide
 │   ├── ARCHITECTURE.md          # System architecture
 │   ├── API_REFERENCE.md         # API documentation
-│   ├── CONTRIBUTING.md          # Contribution guide
 │   └── diagrams/               # PlantUML diagrams
 └── .streamlit/
     └── config.toml             # Streamlit configuration
@@ -183,12 +167,6 @@ ai-financial-advisory/
 2. **Add UI components** in `app.py` using Streamlit
 3. **Update documentation** in `docs/` folder
 4. **Test thoroughly** with different user profiles
-
-### Code Quality
-- **Follow PEP 8** coding standards
-- **Add docstrings** to all public functions
-- **Handle errors gracefully** with user-friendly messages
-- **Use type hints** for better code documentation
 
 ## 📊 Key Features Deep Dive
 
@@ -227,12 +205,6 @@ ai-financial-advisory/
 
 ## 🚀 Deployment Options
 
-### Replit (Recommended)
-- **One-click deployment** with automatic dependency management
-- **Built-in secret management** for API keys
-- **Automatic SSL/TLS** with public URL generation
-- **Easy sharing** and collaboration features
-
 ### Cloud Platforms
 - **Heroku**: Simple deployment with Procfile
 - **Streamlit Cloud**: Direct integration with GitHub
@@ -245,44 +217,12 @@ ai-financial-advisory/
 - **Hot Reload**: Streamlit's automatic refresh on code changes
 - **Debug Mode**: Enhanced error messages and logging
 
-## 📈 Performance & Scalability
-
-### Current Performance
-- **Session-based State**: Fast user experience with memory storage
-- **Cached API Calls**: Reduced latency with intelligent caching
-- **Optimized Calculations**: Efficient algorithms for financial computations
-- **Responsive UI**: Real-time updates with Streamlit's reactive model
-
-### Scaling Considerations
-- **Database Integration**: PostgreSQL/MongoDB for persistent storage
-- **Multi-user Support**: User authentication and data isolation
-- **Microservices**: Component decomposition for large-scale deployment
-- **Load Balancing**: Horizontal scaling for high traffic
-
-## 🤝 Contributing
-
-We welcome contributions! Please see our [Contributing Guide](docs/CONTRIBUTING.md) for details on:
-
-- **Code Standards**: Python style guidelines and best practices
-- **Development Setup**: Local environment configuration
-- **Testing Guidelines**: Unit and integration test requirements
-- **Documentation Standards**: Keeping docs current and comprehensive
-- **Pull Request Process**: Step-by-step contribution workflow
-
-### Areas for Contribution
-- 🚀 **Feature Development**: New analysis tools and integrations
-- 🐛 **Bug Fixes**: Performance improvements and error handling
-- 📚 **Documentation**: Guides, tutorials, and API documentation
-- 🧪 **Testing**: Test coverage expansion and quality assurance
-- 🎨 **UI/UX**: Design improvements and accessibility enhancements
-
 ## 📚 Documentation
 
 ### Complete Documentation Available
 - **[Setup Guide](docs/SETUP.md)**: Detailed installation and configuration
 - **[Architecture Documentation](docs/ARCHITECTURE.md)**: System design and decisions
 - **[API Reference](docs/API_REFERENCE.md)**: Complete API documentation
-- **[Contributing Guide](docs/CONTRIBUTING.md)**: Development and contribution guidelines
 - **[PlantUML Diagrams](docs/diagrams/)**: Visual system architecture
 
 ### Architecture Diagrams
@@ -335,9 +275,3 @@ Democratize access to high-quality financial advice through AI technology, makin
 3. **Education**: Help users understand financial concepts and decisions
 4. **Actionability**: Provide specific, implementable recommendations
 5. **Security**: Protect user privacy and financial information
-
----
-
-**Built with ❤️ for democratizing financial advice**
-
-*Empowering individuals to make informed financial decisions through AI-powered guidance and comprehensive analysis tools.*
