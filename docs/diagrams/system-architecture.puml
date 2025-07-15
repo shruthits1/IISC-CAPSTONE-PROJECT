@@ -1,0 +1,72 @@
+@startuml System Architecture
+!theme plain
+title AI Financial Advisory Platform - System Architecture
+
+package "User Interface Layer" {
+  [Streamlit Web App] as UI
+  [Interactive Charts] as Charts
+  [Forms & Inputs] as Forms
+}
+
+package "Business Logic Layer" {
+  [Financial Advisor] as FA
+  [Portfolio Analyzer] as PA
+  [Goal Planner] as GP
+  [Market Data Provider] as MDP
+  [Recommendation Engine] as RE
+  [User Profile Manager] as UPM
+}
+
+package "Data Layer" {
+  [Session State] as SS
+  [Mock Data] as MD
+  [Cache Layer] as Cache
+}
+
+package "External Services" {
+  [OpenAI GPT-4o] as OpenAI
+  [Anthropic Claude] as Anthropic
+  [Yahoo Finance API] as Yahoo
+  [Market Data APIs] as APIs
+}
+
+' User Interface connections
+UI --> Forms
+UI --> Charts
+UI --> SS
+
+' Business Logic connections
+Forms --> UPM
+Forms --> FA
+Forms --> PA
+Forms --> GP
+
+Charts --> MDP
+Charts --> RE
+
+' Business Logic to External Services
+FA --> OpenAI
+FA --> Anthropic
+PA --> Yahoo
+MDP --> Yahoo
+MDP --> APIs
+
+' Data Layer connections
+UPM --> SS
+PA --> Cache
+MDP --> Cache
+RE --> MD
+
+' Internal Business Logic connections
+FA --> UPM
+PA --> UPM
+GP --> UPM
+RE --> UPM
+RE --> PA
+
+note top of OpenAI : Primary AI Service\nPersonalized advice
+note top of Yahoo : Real-time market data\nStock prices & indices
+note top of SS : Temporary storage\nUser profiles & portfolios
+note top of MD : Fallback data\nWhen APIs fail
+
+@enduml

@@ -1,0 +1,123 @@
+@startuml User Journey
+!theme plain
+title AI Financial Advisory Platform - User Journey Flow
+
+start
+
+:User visits application;
+:Application loads main interface;
+
+if (User profile exists?) then (no)
+  :Show "Create Profile" prompt;
+  :User clicks "Setup Profile";
+  
+  partition "Profile Creation" {
+    :Display profile form;
+    :User fills personal information;
+    note right: Name, age, income, employment
+    :User selects risk tolerance;
+    note right: Conservative, Moderate, Aggressive
+    :User sets investment experience;
+    note right: Beginner, Intermediate, Advanced
+    :User enters financial data;
+    note right: Monthly savings, debt amount
+    :User selects financial goals;
+    note right: Retirement, emergency fund, etc.
+    :System validates profile data;
+    if (Validation successful?) then (no)
+      :Display error messages;
+      stop
+    else (yes)
+      :Calculate financial health score;
+      :Save profile to session;
+      :Display success message;
+    endif
+  }
+else (yes)
+  :Load existing profile;
+endif
+
+:Display dashboard with profile summary;
+
+partition "Main Application Flow" {
+  repeat
+    :User selects feature from navigation;
+    
+    switch (Selected feature?)
+    case (Dashboard)
+      :Show financial metrics;
+      :Display quick insights;
+      :Show market overview;
+      
+    case (AI Chat)
+      :Display chat interface;
+      :User asks financial question;
+      :System processes query with profile context;
+      :OpenAI generates personalized advice;
+      :Display AI response;
+      :Add to chat history;
+      
+    case (Portfolio Analysis)
+      :Show portfolio input form;
+      :User enters current investments;
+      note right: Stocks, bonds, cash, etc.
+      :System fetches real-time data;
+      :Calculate risk metrics;
+      :Analyze diversification;
+      :Generate recommendations;
+      :Display analysis results;
+      :Show performance charts;
+      
+    case (Goal Planning)
+      :Display goal creation form;
+      :User sets financial goal;
+      note right: Amount, timeline, priority
+      :System calculates requirements;
+      :Assess goal feasibility;
+      :Generate investment strategy;
+      :Display goal plan;
+      :Show progress projections;
+      
+    case (Market Insights)
+      :Fetch current market data;
+      :Display market indices;
+      :Show sector performance;
+      :Generate market insights;
+      :Display economic indicators;
+      
+    case (Insurance Advisory)
+      :Analyze user profile;
+      :Identify coverage gaps;
+      :Generate insurance recommendations;
+      :Display suggested products;
+      
+    endswitch
+    
+    :User reviews information;
+    
+  repeat while (Continue using app?) is (yes)
+}
+
+if (User wants to edit profile?) then (yes)
+  :Load current profile data;
+  :Display editable form;
+  :User makes changes;
+  :Validate updated data;
+  if (Validation successful?) then (yes)
+    :Update profile in session;
+    :Recalculate health score;
+    :Display success message;
+  else (no)
+    :Display error messages;
+  endif
+endif
+
+:User session ends;
+:Clear session data;
+
+stop
+
+note top of start : Entry point for all users
+note bottom of stop : No persistent data storage
+
+@enduml
