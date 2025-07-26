@@ -275,3 +275,5 @@ Democratize access to high-quality financial advice through AI technology, makin
 3. **Education**: Help users understand financial concepts and decisions
 4. **Actionability**: Provide specific, implementable recommendations
 5. **Security**: Protect user privacy and financial information
+=======
+# CAPSTONE-PROJECT
