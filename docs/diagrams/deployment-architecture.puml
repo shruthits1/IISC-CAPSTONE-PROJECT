@@ -1,0 +1,123 @@
+@startuml Deployment Architecture
+!theme plain
+title AI Financial Advisory Platform - Deployment Architecture
+
+!define CLOUD_COLOR #E6F3FF
+!define APP_COLOR #FFE6E6
+!define DATA_COLOR #E6FFE6
+!define EXTERNAL_COLOR #FFFACD
+
+package "User Environment" {
+  actor "End User" as User
+  node "Web Browser" as Browser
+}
+
+cloud "Internet" as Internet {
+}
+
+package "Replit Cloud Platform" CLOUD_COLOR {
+  node "Replit Container" as Container {
+    
+    package "Python Runtime Environment" APP_COLOR {
+      component "Streamlit Server" as Streamlit {
+        port "Port 5000" as Port5000
+      }
+      
+      component "Application Code" as AppCode {
+        artifact "app.py" as MainApp
+        folder "utils/" as Utils {
+          artifact "financial_advisor.py"
+          artifact "portfolio_analyzer.py"
+          artifact "goal_planner.py"
+          artifact "market_data.py"
+          artifact "recommendation_engine.py"
+          artifact "user_profile.py"
+        }
+        folder "data/" as Data {
+          artifact "mock_users.py"
+        }
+      }
+      
+      package "Python Dependencies" {
+        artifact "streamlit"
+        artifact "openai"
+        artifact "anthropic"
+        artifact "pandas"
+        artifact "numpy"
+        artifact "plotly"
+        artifact "scikit-learn"
+        artifact "yfinance"
+      }
+    }
+    
+    package "Configuration" DATA_COLOR {
+      folder ".streamlit/" as StreamlitConfig {
+        artifact "config.toml"
+      }
+      database "Environment Variables" as EnvVars {
+        artifact "OPENAI_API_KEY"
+        artifact "ANTHROPIC_API_KEY"
+      }
+    }
+    
+    package "Runtime Storage" DATA_COLOR {
+      database "Session State" as SessionState
+      database "Cache Memory" as CacheMemory
+    }
+  }
+}
+
+cloud "External API Services" EXTERNAL_COLOR {
+  node "OpenAI Platform" as OpenAIService {
+    component "GPT-4o API" as GPT4o
+  }
+  
+  node "Anthropic Platform" as AnthropicService {
+    component "Claude API" as Claude
+  }
+  
+  node "Yahoo Finance" as YahooService {
+    component "Market Data API" as MarketAPI
+  }
+}
+
+' User connections
+User --> Browser
+Browser --> Internet : HTTPS Requests
+Internet --> Container : Port 5000
+
+' Internal connections
+Streamlit --> MainApp : Execute
+MainApp --> Utils : Import modules
+MainApp --> Data : Load test data
+MainApp --> SessionState : Store user data
+Utils --> CacheMemory : Cache API responses
+
+' External API connections
+Utils --> Internet : API Calls
+Internet --> OpenAIService : HTTPS/REST
+Internet --> AnthropicService : HTTPS/REST
+Internet --> YahooService : HTTPS/REST
+
+' Configuration connections
+Streamlit --> StreamlitConfig : Load config
+Utils --> EnvVars : Read API keys
+
+' Response flow
+OpenAIService --> Internet : AI Responses
+AnthropicService --> Internet : AI Responses (backup)
+YahooService --> Internet : Market Data
+Internet --> Utils : API Responses
+Utils --> MainApp : Processed data
+MainApp --> Streamlit : UI Updates
+Streamlit --> Internet : Web Response
+Internet --> Browser : Updated UI
+Browser --> User : Display results
+
+note top of Container : Auto-scaling container\nManaged by Replit
+note top of EnvVars : Secure secret storage\nNot exposed in code
+note top of SessionState : Temporary storage\nCleared on session end
+note top of OpenAIService : Primary AI service\nPay-per-use pricing
+note top of YahooService : Free market data\nRate limited
+
+@enduml

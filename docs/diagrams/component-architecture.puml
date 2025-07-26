@@ -1,0 +1,91 @@
+@startuml Component Architecture
+!theme plain
+title AI Financial Advisory Platform - Component Architecture
+
+package "app.py - Main Application" {
+  component [Streamlit App] as App {
+    component [Navigation] as Nav
+    component [Session Management] as Session
+    component [UI Components] as UIComp
+  }
+}
+
+package "utils/ - Business Logic Components" {
+  
+  component [Financial Advisor] as FA {
+    portin OpenAI_Interface
+    portin Context_Management
+    portout Advice_Generation
+  }
+  
+  component [Portfolio Analyzer] as PA {
+    portin Market_Data
+    portin Risk_Calculation
+    portout Analysis_Results
+  }
+  
+  component [Goal Planner] as GP {
+    portin Goal_Definition
+    portin Financial_Calculations
+    portout Planning_Results
+  }
+  
+  component [Market Data Provider] as MDP {
+    portin API_Calls
+    portin Data_Processing
+    portout Market_Data
+  }
+  
+  component [Recommendation Engine] as RE {
+    portin ML_Algorithms
+    portin User_Segmentation
+    portout Recommendations
+  }
+  
+  component [User Profile Manager] as UPM {
+    portin Profile_Validation
+    portin Health_Scoring
+    portout User_Data
+  }
+}
+
+package "data/ - Data Components" {
+  component [Mock Users] as MockData {
+    portout Test_Data
+    portout Collaborative_Filtering_Data
+  }
+}
+
+' Main application connections
+App --> FA : User queries
+App --> PA : Portfolio data
+App --> GP : Goal data
+App --> MDP : Market requests
+App --> RE : Recommendation requests
+App --> UPM : Profile management
+
+' Inter-component connections
+FA --> UPM : Profile context
+PA --> UPM : User preferences
+GP --> UPM : Financial profile
+RE --> UPM : User segmentation
+RE --> MockData : Similar users
+PA --> MDP : Stock data
+RE --> PA : Portfolio analysis
+
+' Data flow annotations
+FA ..> App : Personalized advice
+PA ..> App : Risk metrics & recommendations
+GP ..> App : Goal plans & strategies
+MDP ..> App : Market insights
+RE ..> App : Investment recommendations
+UPM ..> App : Profile validation & scoring
+
+note top of FA : AI-powered financial advice\nusing OpenAI GPT-4o
+note top of PA : Portfolio risk analysis\nand performance metrics
+note top of GP : Goal-based financial\nplanning and tracking
+note top of MDP : Real-time market data\nwith fallback capabilities
+note top of RE : ML-based recommendations\nusing collaborative filtering
+note top of UPM : User profile management\nand financial health scoring
+
+@enduml

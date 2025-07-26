@@ -1,0 +1,117 @@
+@startuml Data Flow
+!theme plain
+title AI Financial Advisory Platform - Data Flow Diagram
+
+actor User
+boundary "Streamlit UI" as UI
+control "App Controller" as App
+entity "Session State" as Session
+
+box "Business Logic" #LightBlue
+  control "Financial Advisor" as FA
+  control "Portfolio Analyzer" as PA
+  control "Goal Planner" as GP
+  control "Market Data Provider" as MDP
+  control "Recommendation Engine" as RE
+  control "User Profile Manager" as UPM
+end box
+
+box "External APIs" #LightGreen
+  database "OpenAI API" as OpenAI
+  database "Yahoo Finance" as Yahoo
+end box
+
+box "Data Storage" #LightYellow
+  database "Mock Data" as Mock
+  database "Cache" as Cache
+end box
+
+== Profile Creation Flow ==
+User -> UI : Fill profile form
+UI -> App : Profile data
+App -> UPM : Validate profile
+UPM -> UPM : Calculate health score
+UPM -> Session : Store profile
+Session -> UI : Profile confirmation
+UI -> User : Success message
+
+== AI Advice Flow ==
+User -> UI : Ask financial question
+UI -> App : User query
+App -> UPM : Get profile context
+UPM -> Session : Retrieve profile
+Session -> UPM : Profile data
+UPM -> FA : Profile + Query
+FA -> OpenAI : Generate advice
+OpenAI -> FA : AI response
+FA -> App : Formatted advice
+App -> UI : Display advice
+UI -> User : Personalized advice
+
+== Portfolio Analysis Flow ==
+User -> UI : Submit portfolio data
+UI -> App : Portfolio information
+App -> PA : Analyze portfolio
+PA -> Yahoo : Fetch stock data
+Yahoo -> PA : Market data
+PA -> Cache : Store data
+PA -> PA : Calculate metrics
+PA -> UPM : Get user preferences
+UPM -> Session : User profile
+Session -> UPM : Profile data
+UPM -> PA : Risk tolerance
+PA -> App : Analysis results
+App -> UI : Charts & recommendations
+UI -> User : Portfolio insights
+
+== Market Data Flow ==
+App -> MDP : Request market data
+MDP -> Yahoo : API call
+alt Successful API call
+  Yahoo -> MDP : Real market data
+else API failure
+  MDP -> Mock : Generate fallback data
+  Mock -> MDP : Mock market data
+end
+MDP -> Cache : Store data
+Cache -> MDP : Cached data
+MDP -> App : Market information
+App -> UI : Market charts
+UI -> User : Market insights
+
+== Recommendation Flow ==
+App -> RE : Get recommendations
+RE -> UPM : Get user profile
+UPM -> Session : Retrieve profile
+Session -> UPM : User data
+UPM -> RE : Profile information
+RE -> Mock : Get similar users
+Mock -> RE : User segments
+RE -> PA : Portfolio analysis
+PA -> RE : Risk metrics
+RE -> RE : Generate recommendations
+RE -> App : Personalized suggestions
+App -> UI : Investment recommendations
+UI -> User : Recommended products
+
+== Goal Planning Flow ==
+User -> UI : Set financial goal
+UI -> App : Goal parameters
+App -> GP : Create goal plan
+GP -> UPM : Get financial profile
+UPM -> Session : User profile
+Session -> UPM : Financial data
+UPM -> GP : Profile context
+GP -> GP : Calculate requirements
+GP -> GP : Assess feasibility
+GP -> App : Goal plan
+App -> UI : Goal strategy
+UI -> User : Planning results
+
+note over OpenAI : Primary AI service\nfor advice generation
+note over Yahoo : Real-time market data\nStock prices & indices
+note over Session : Temporary storage\nUser profiles & data
+note over Mock : Fallback data &\nCollaborative filtering
+note over Cache : Performance optimization\nAPI response caching
+
+@enduml
