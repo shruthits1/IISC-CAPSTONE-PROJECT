@@ -18,3 +18,9 @@
 - User Satisfaction: Metrics derived from user feedback surveys or sentiment analysis to gauge satisfaction levels (Li & Zhang, 2021)
 
 <img width="1646" height="901" alt="image" src="https://github.com/user-attachments/assets/a74f6931-5577-4c8f-8869-43b7ffec4e35" />
+
+
+# Datasets
+1. Prudential Life insurance data : includes data of 59382 people, with their age, ht and wt, medical history, employment details, insurance info and a measure of risk (score of 1-8)
+2. Personal finance data: for 1 person over an year with income, expense and category
+3. 
