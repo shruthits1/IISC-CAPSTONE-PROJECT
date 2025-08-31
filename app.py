@@ -15,7 +15,7 @@ from utils.user_profile import UserProfile
 
 # Page configuration
 st.set_page_config(
-    page_title="AI Financial Advisory Platform",
+    page_title="Pennywise",
     page_icon="💰",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -43,7 +43,7 @@ def initialize_components():
 advisor, portfolio_analyzer, goal_planner, market_data, recommendation_engine, user_profile = initialize_components()
 
 # Sidebar navigation
-st.sidebar.title("🏦 AI Financial Advisory")
+st.sidebar.title("🏦 IISC Pennywise - Team 12")
 st.sidebar.markdown("---")
 
 # User profile section in sidebar

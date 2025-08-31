@@ -1,4 +1,4 @@
-# AI Financial Advisory Platform - Setup Guide
+# Pennywise - Setup Guide
 
 ## Table of Contents
 - [Prerequisites](#prerequisites)
