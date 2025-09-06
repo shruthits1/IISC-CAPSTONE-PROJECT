@@ -1,8 +1,8 @@
-# AI Financial Advisory Platform - API Reference
+# Pennywise - API Reference
 
 ## Overview
 
-This document provides detailed information about the internal APIs and interfaces of the AI Financial Advisory Platform. Each utility module exposes a clean interface for specific financial functionalities.
+This document provides detailed information about the internal APIs and interfaces of the Pennywise. Each utility module exposes a clean interface for specific financial functionalities.
 
 ## Core Components
 
@@ -532,4 +532,4 @@ def test_api_integration():
 
 ---
 
-This API reference provides comprehensive documentation for developers working with the AI Financial Advisory Platform. Each component is designed to be modular and independently testable while maintaining clean interfaces for integration.
+This API reference provides comprehensive documentation for developers working with the Pennywise. Each component is designed to be modular and independently testable while maintaining clean interfaces for integration.

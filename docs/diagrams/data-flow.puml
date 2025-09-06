@@ -1,6 +1,6 @@
 @startuml Data Flow
 !theme plain
-title AI Financial Advisory Platform - Data Flow Diagram
+title Pennywise - Data Flow Diagram
 
 actor User
 boundary "Streamlit UI" as UI

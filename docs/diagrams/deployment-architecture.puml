@@ -1,6 +1,6 @@
 @startuml Deployment Architecture
 !theme plain
-title AI Financial Advisory Platform - Deployment Architecture
+title Pennywise - Deployment Architecture
 
 !define CLOUD_COLOR #E6F3FF
 !define APP_COLOR #FFE6E6

@@ -1,8 +1,8 @@
-# AI Financial Advisory Platform - Architecture Documentation
+# Pennywise - Architecture Documentation
 
 ## Overview
 
-The AI Financial Advisory Platform is a comprehensive financial guidance system built with a modular architecture that combines AI-powered advice, real-time market data, and advanced analytics to provide personalized financial recommendations.
+The Pennywise is a comprehensive financial guidance system built with a modular architecture that combines AI-powered advice, real-time market data, and advanced analytics to provide personalized financial recommendations.
 
 ## Architectural Principles
 

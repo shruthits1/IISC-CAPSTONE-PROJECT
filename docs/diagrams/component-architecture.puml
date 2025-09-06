@@ -1,6 +1,6 @@
 @startuml Component Architecture
 !theme plain
-title AI Financial Advisory Platform - Component Architecture
+title Pennywise - Component Architecture
 
 package "app.py - Main Application" {
   component [Streamlit App] as App {
